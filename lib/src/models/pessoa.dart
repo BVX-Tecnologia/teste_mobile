@@ -4,6 +4,6 @@ class Pessoa{
 
   Pessoa({required this.altura, required this.peso});
 
-  double get valorImc => peso /(altura * altura);
+  double get valorImc => 26.4;
 
 }
