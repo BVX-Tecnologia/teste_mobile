@@ -12,6 +12,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomeController controller = HomeController();
+
+  TextEditingController textPeso = TextEditingController();
+  TextEditingController textAltura = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    textPeso.dispose();
+    textAltura.dispose();
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -29,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 'Digite seu peso em Kg:',
               ),
               TextField(
-                controller: controller.textPeso,
+                controller: textPeso,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   hintText:"exemplo: 75,6",
@@ -40,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                 'Digite sua altura em metros:',
               ),
               TextField(
-                controller: controller.textAltura,
+                controller: textAltura,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   hintText:"exemplo: 1,80",
@@ -49,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 16,),
               ImcButton(
-                onPressed: ()=> controller.calcularIMC(),
+                onPressed: ()=> controller.calcularIMC(textAltura: textAltura.text, textPeso: textPeso.text),
               ),
               const SizedBox(height: 20,),
               ValueListenableBuilder<double>(
